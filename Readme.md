@@ -22,7 +22,7 @@ Let’s aim for clarity and elegance in our code!
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/Arpit6190/python_projects.git
+   git clone https://github.com/arpit-litoria/python_projects.git
 
 2. **Explore the Projects**:
      Navigate through the folders and find the projects that catch your eye. Each project is a new adventure waiting for you!
