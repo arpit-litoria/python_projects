@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href='https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #4e54c8, #8f94fb);
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+        }
+
+        .container {
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #dee2e6;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .dataTables_paginate {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .dataTables_paginate a {
+            padding: 6px 12px;
+            margin: 0 4px;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            color: #007bff;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dataTables_paginate a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        table tr td {
+            color: #000;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 10px;
+            font-size: 13px;
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Inventory</h1>
+            <div>
+                <table id='inventory' class='display dataTable'>
+                    <thead>
+                    <tr>
+                        <th>Instance Name</th>
+                        <th>Instance Type</th>
+                        <th>Instance Ip</th>
+                        <th>InstanceId</th>
+                        <th>Creation time</th>
+                        <th>lifecycle</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    Created by Arpit © 2025
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var invDataTable = $('#inventory').DataTable({
+            'processing': true,
+            'serverSide': true,
+            'serverMethod': 'post',
+            'ajax': {
+                'url': '/ajaxfile'
+            },
+            'lengthMenu': [[10, 5, 25, 50, -1], [10, 5, 25, 50, "All"]],
+            searching: true,
+            sort: false,
+            'columns': [
+                {data: 'instance_name'},
+                {data: 'instance_type'},
+                {data: 'instance_ip'},
+                {data: 'instance_id'},
+                {
+                    data: 'creationtime',
+                    render: function (data, type, row) {
+                        var trimmedTime = data.substring(0, data.length - 4);
+                        return trimmedTime;
+                    }
+                },
+                {data: 'lifecycle'},
+            ]
+        });
+    });
+</script>
+</body>
+</html>
