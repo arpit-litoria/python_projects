@@ -1,4 +1,4 @@
-🖥️ Inventory Management Web App
+# 🖥️ Inventory Management Web App
 Welcome to the Inventory Management Web App! This Flask + MySQL project fetches and displays instance details from a database in a modern, responsive web UI using Bootstrap and DataTables.
 
 📜 Overview
